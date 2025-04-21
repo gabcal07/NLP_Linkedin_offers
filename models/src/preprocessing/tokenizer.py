@@ -1,18 +1,26 @@
 """
 Utility functions for loading and using Hugging Face tokenizers.
 """
+
 from tokenizers import Tokenizer
 from huggingface_hub import hf_hub_download
 import os
 import logging
 
-logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
+logging.basicConfig(
+    level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s"
+)
 
 # Cache directory for tokenizers (optional, but good practice)
-CACHE_DIR = os.path.join(os.path.expanduser("~"), ".cache", "huggingface", "tokenizers_custom")
+CACHE_DIR = os.path.join(
+    os.path.expanduser("~"), ".cache", "huggingface", "tokenizers_custom"
+)
 os.makedirs(CACHE_DIR, exist_ok=True)
 
-def load_tokenizer(tokenizer_name: str = "gpt2", cache_dir: str | None = CACHE_DIR) -> Tokenizer:
+
+def load_tokenizer(
+    tokenizer_name: str = "gpt2", cache_dir: str | None = CACHE_DIR
+) -> Tokenizer:
     """
     Loads a pre-trained tokenizer from the Hugging Face Hub.
 
@@ -37,16 +45,22 @@ def load_tokenizer(tokenizer_name: str = "gpt2", cache_dir: str | None = CACHE_D
                 filename="tokenizer.json",
                 cache_dir=cache_dir,
                 library_name="nlp-linkedin-offers",
-                library_version="0.1.0"
+                library_version="0.1.0",
             )
             tokenizer = Tokenizer.from_file(config_path)
-            logging.info(f"Successfully loaded tokenizer '{tokenizer_name}' from tokenizer.json.")
+            logging.info(
+                f"Successfully loaded tokenizer '{tokenizer_name}' from tokenizer.json."
+            )
             return tokenizer
         except Exception as e:
-            logging.warning(f"Could not load '{tokenizer_name}' directly from tokenizer.json: {e}. "
-                            "Attempting legacy loading (might be slower or require transformers).")
-            raise FileNotFoundError(f"Could not find or load tokenizer.json for '{tokenizer_name}'. "
-                                    "Consider installing the 'transformers' library and using AutoTokenizer for broader compatibility.")
+            logging.warning(
+                f"Could not load '{tokenizer_name}' directly from tokenizer.json: {e}. "
+                "Attempting legacy loading (might be slower or require transformers)."
+            )
+            raise FileNotFoundError(
+                f"Could not find or load tokenizer.json for '{tokenizer_name}'. "
+                "Consider installing the 'transformers' library and using AutoTokenizer for broader compatibility."
+            )
 
     except Exception as e:
         logging.error(f"Failed to load tokenizer '{tokenizer_name}': {e}")
