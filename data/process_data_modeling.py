@@ -6,7 +6,13 @@ import re
 # Download latest version to the specified directory
 path = kagglehub.dataset_download("arshkon/linkedin-job-postings")
 
-
+# This function cleans the text by:
+# 1. Converting to lowercase
+# 2. Removing URLs
+# 3. Removing email addresses
+# 4. Removing numbers with 10 or more digits
+# 5. Removing special characters
+# 6. Removing extra whitespace
 def clean_text(text):
     text = text.lower()
     text = re.sub(r"http\S+|www\S+|https\S+", "", text)
