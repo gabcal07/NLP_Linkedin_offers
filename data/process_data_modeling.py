@@ -20,7 +20,7 @@ path = kagglehub.dataset_download("arshkon/linkedin-job-postings")
 # 4. Removing numbers with 10 or more digits
 # 5. Removing special characters
 # 6. Removing extra whitespace
-def clean_text(text):
+def clean_text(text, add_eod_token=True):
     # Split camelCase words (insert space before capital letters that follow lowercase letters)
     text = re.sub(r'(?<=[a-z])(?=[A-Z])', ' ', text)
     text = text.lower()
@@ -29,6 +29,11 @@ def clean_text(text):
     text = re.sub(r"\d{10,}", "", text)
     text = re.sub(r"[^a-zA-Z0-9\s.,!?]", " ", text)
     text = re.sub(r"\s+", " ", text).strip()
+    
+    # Add end-of-description token
+    if add_eod_token:
+        text = text + " <EOD>"
+        
     return text
 
 def get_processed_data():
