@@ -23,7 +23,7 @@ path = kagglehub.dataset_download("arshkon/linkedin-job-postings")
 def clean_text(text, add_eod_token=True):
     # Split camelCase words (insert space before capital letters that follow lowercase letters)
     text = re.sub(r'(?<=[a-z])(?=[A-Z])', ' ', text)
-    text = text.lower()
+    # text = text.lower()
     text = re.sub(r"http\S+|www\S+|https\S+", "", text)
     text = re.sub(r"\S+@\S+", "", text)
     text = re.sub(r"\d{10,}", "", text)
