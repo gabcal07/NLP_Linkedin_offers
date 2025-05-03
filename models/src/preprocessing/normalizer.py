@@ -14,7 +14,7 @@ from nltk.corpus import stopwords
 from nltk.stem import WordNetLemmatizer
 from nltk.stem.porter import PorterStemmer
 
-from src.preprocessing.tokenizer import tokenize, BYTE_TOKENIZER
+from models.src.preprocessing.tokenizer import tokenize, BYTE_TOKENIZER
 # Download the NLTK data files (if not already downloaded)
 nltk.download("punkt")
 nltk.download("stopwords")
