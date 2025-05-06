@@ -15,13 +15,14 @@ from nltk.stem import WordNetLemmatizer
 from nltk.stem.porter import PorterStemmer
 
 from models.src.preprocessing.tokenizer import tokenize, BYTE_TOKENIZER
+
 # Download the NLTK data files (if not already downloaded)
 nltk.download("punkt")
 nltk.download("stopwords")
 nltk.download("wordnet")
 
-class TextNormalizer:
 
+class TextNormalizer:
     def __init__(self):
         self.stop_words = set(stopwords.words("english"))
         self.lemmatizer = WordNetLemmatizer()
@@ -57,7 +58,10 @@ class TextNormalizer:
         # tokens = [self.stemmer.stem(word) for word in tokens]
 
         # Convert numbers to words
-        tokens = [self._convert_numbers_to_words(word) if word.isdigit() else word for word in tokens]
+        tokens = [
+            self._convert_numbers_to_words(word) if word.isdigit() else word
+            for word in tokens
+        ]
 
         normalized_text = " ".join(tokens)
 

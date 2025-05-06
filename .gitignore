@@ -2,3 +2,8 @@
 .ruff_cache
 __pycache__
 *.parquet
+*.safetensors
+*.pkl
+.env
+*.json
+bertopic_model

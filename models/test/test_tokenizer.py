@@ -11,8 +11,8 @@ if __name__ == "__main__":
     decoded = tokenizer.decode(encoded.ids)
     print(f"Decoded Text: {decoded}")
 
-    assert (
-        "Hello, world" in decoded
-    ), f"Decoded text '{decoded}' does not match original '{test_text}' closely enough."
+    assert "Hello, world" in decoded, (
+        f"Decoded text '{decoded}' does not match original '{test_text}' closely enough."
+    )
 
     print("\nTokenizer encode/decode test passed!")

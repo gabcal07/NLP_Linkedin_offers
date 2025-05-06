@@ -16,7 +16,7 @@ if __name__ == "__main__":
     print(f"Normalized Text: {normalized_text}")
 
     # Check if the normalization process works as expected
-    assert (
-        "hello world test chicken four year old" in normalized_text
-    ), f"Normalized text '{normalized_text}' does not match expected output. \n this was {test_text}"
+    assert "hello world test chicken four year old" in normalized_text, (
+        f"Normalized text '{normalized_text}' does not match expected output. \n this was {test_text}"
+    )
     print("\nText normalization test passed!")

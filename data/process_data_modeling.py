@@ -12,6 +12,7 @@ logging.basicConfig(
 # Download latest version to the specified directory
 path = kagglehub.dataset_download("arshkon/linkedin-job-postings")
 
+
 # This function cleans the text by:
 # 0. Splitting camelCase words
 # 1. Converting to lowercase
@@ -22,19 +23,20 @@ path = kagglehub.dataset_download("arshkon/linkedin-job-postings")
 # 6. Removing extra whitespace
 def clean_text(text, add_eod_token=False):
     # Split camelCase words (insert space before capital letters that follow lowercase letters)
-    text = re.sub(r'(?<=[a-z])(?=[A-Z])', ' ', text)
+    text = re.sub(r"(?<=[a-z])(?=[A-Z])", " ", text)
     # text = text.lower()
     text = re.sub(r"http\S+|www\S+|https\S+", "", text)
     text = re.sub(r"\S+@\S+", "", text)
     text = re.sub(r"\d{10,}", "", text)
     text = re.sub(r"[^a-zA-Z0-9\s.,!?]", " ", text)
     text = re.sub(r"\s+", " ", text).strip()
-    
+
     # Add end-of-description token
     if add_eod_token:
         text = text + " <EOD>"
-        
+
     return text
+
 
 def get_processed_data():
     logging.info("Importing data from Kaggle")
@@ -72,8 +74,6 @@ def get_processed_data():
     logging.info("Returning the processed DataFrame")
     return postings_df
 
-
-    
 
 if __name__ == "__main__":
     print(f"Path to dataset files: {path}")
