@@ -25,7 +25,7 @@ professionalism_metric = make_genai_metric(
             justification="Highly professional and formal."
         ),
     ],
-    model="openai:/gpt-4",
+    model="openai:/gpt-4o-mini",
     parameters={"temperature": 0.0},
     aggregations=["mean", "variance"],
     greater_is_better=True,
@@ -60,7 +60,7 @@ long_range_coherence_metric = make_genai_metric(
             justification="Strong thematic unity and logical progression."
         ),
     ],
-    model="openai:/gpt-4",
+    model="openai:/gpt-4o-mini",
     parameters={"temperature": 0.0},
     aggregations=["mean", "variance"],
     greater_is_better=True,
@@ -94,7 +94,7 @@ semantic_richness_metric = make_genai_metric(
             justification="Sophisticated vocabulary, conveys complex and nuanced ideas."
         ),
     ],
-    model="openai:/gpt-4",
+    model="openai:/gpt-4o-mini",
     parameters={"temperature": 0.0},
     aggregations=["mean", "variance"],
     greater_is_better=True,
@@ -129,7 +129,7 @@ novelty_metric = make_genai_metric(
             justification="Highly original, creative, and non-repetitive."
         ),
     ],
-    model="openai:/gpt-4",
+    model="openai:/gpt-4o-mini",
     parameters={"temperature": 0.0},
     aggregations=["mean", "variance"],
     greater_is_better=True,
@@ -159,7 +159,7 @@ grammar_metric = make_genai_metric(
             justification="Grammatically correct."
         ),
     ],
-    model="openai:/gpt-4",
+    model="openai:/gpt-4o-mini",
     parameters={"temperature": 0.0},
     aggregations=["mean", "variance"],
     greater_is_better=True,

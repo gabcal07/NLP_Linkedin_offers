@@ -7,3 +7,9 @@ __pycache__
 .env
 *.json
 bertopic_model
+mlruns
+mlartifacts
+*.csv
+fine_tuned*
+fined_tuned*/
+checkpoint*
