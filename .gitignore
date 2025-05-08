@@ -13,3 +13,5 @@ mlartifacts
 fine_tuned*
 fined_tuned*/
 checkpoint*
+*.txt
+*.bin
