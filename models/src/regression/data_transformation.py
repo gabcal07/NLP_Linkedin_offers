@@ -53,20 +53,22 @@ def clean_data(df:pd.DataFrame, target:str="normalized_salary") -> pd.DataFrame:
         "zip_code",
         "fips",
         "currency",
-        #"pay_period" # not sure about this one
-        "application_type"
+        "pay_period" # not sure about this one
+        "application_type",
+        "company_id", # remove this for simplicity
+        "company_name", # remove this for simplicity
     ]
 
     df = df.drop(columns=useless_cols, errors='ignore')
 
-    df = df.dropna(subset=["company_name", "title", "description", "company_id"])
+    df = df.dropna(subset=["title", "description"])
 
     # fill nan values
-    df.loc[:,"pay_period"] = df["pay_period"].fillna("UNKNOWN")
-    df.loc[:,"formatted_experience_level"] = df["formatted_experience_level"].fillna("Not specified")
-    df.loc[:, "skills_desc"] = df["skills_desc"].fillna("Not specified")
-    df.loc[:,"applies"] = df["applies"].fillna(0)
-    df.loc[:,"views"] = df["views"].fillna(0)
+    # df.loc[:,"pay_period"] = df["pay_period"].fillna("UNKNOWN")
+    # df.loc[:,"formatted_experience_level"] = df["formatted_experience_level"].fillna("Not specified")
+    # df.loc[:, "skills_desc"] = df["skills_desc"].fillna("Not specified")
+    # df.loc[:,"applies"] = df["applies"].fillna(0)
+    # df.loc[:,"views"] = df["views"].fillna(0)
 
     if target == "normalized_salary":
         df = df.dropna(subset=["normalized_salary"])
@@ -99,4 +101,10 @@ def load_data(target="normalized_salary"):
     X = df.drop(columns=[target])
     y = df[target]
     return X, y
+
+def load_data_single_df(target="normalized_salary"):
+    path = kagglehub.dataset_download("arshkon/linkedin-job-postings")
+    postings_raw = pd.read_csv(os.path.join(path, "postings.csv"), index_col=0)
+    df = clean_data(postings_raw, target=target)
+    return df
 
