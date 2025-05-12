@@ -330,7 +330,7 @@ def generate_description(model, title, word_to_idx, embedding_model_st_instance,
     return " ".join(filter(None, words))
 
 
-def main(job_title):
+def lstm_generate_description(job_title):
     logging.info("Starting description generation script...")
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     logging.info(f"Using device: {device}")
@@ -373,10 +373,3 @@ def main(job_title):
         print(generated_description)
         logging.info(f"--- End of Description for '{job_title}' ---")
         return generated_description
-
-if __name__ == "__main__":
-    project_root = os.path.abspath(os.path.join(os.getcwd(), '../../..'))
-    if project_root not in sys.path:
-        sys.path.append(project_root)
-    job_title = "Senior Software Engineer Remote"
-    main(job_title)
